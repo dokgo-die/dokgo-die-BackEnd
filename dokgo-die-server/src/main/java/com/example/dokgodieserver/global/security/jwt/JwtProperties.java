@@ -14,5 +14,4 @@ public class JwtProperties {
     private final Long accessExp;
     private final String header;
     private final String prefix;
-
 }
