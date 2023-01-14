@@ -12,9 +12,6 @@ public class SignInRequest {
     private String accountId;
 
     @NotBlank
-    private String name;
-
-    @NotBlank
     private String password;
 
 }
