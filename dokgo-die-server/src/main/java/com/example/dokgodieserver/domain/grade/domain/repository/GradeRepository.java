@@ -1,6 +1,6 @@
-package com.example.dokgodieserver.domain.grade.repository;
+package com.example.dokgodieserver.domain.grade.domain.repository;
 
-import com.example.dokgodieserver.domain.grade.Grade;
+import com.example.dokgodieserver.domain.grade.domain.Grade;
 import com.example.dokgodieserver.domain.user.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
