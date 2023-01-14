@@ -14,7 +14,7 @@ public class MyPageResponse {
     private final String name;
     private final String accountId;
     private final String profileImageUrl;
-    private final Byte grade;
+    private final int grade;
     private List<UserTalkResponse> userTalkListList;
 
     @Getter
@@ -22,7 +22,7 @@ public class MyPageResponse {
     public static class UserTalkResponse {
         private final Long userId;
         private final String name;
-        private final Byte grade;
+        private final int grade;
         private final String profileImageUrl;
 
     }
