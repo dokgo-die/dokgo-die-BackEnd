@@ -19,6 +19,7 @@ public enum ErrorCode {
     IMAGE_NOT_FOUND(404, "Image Not Found"),
 
     USER_ALREADY_EXISTS(409, "User Already Exist"),
+    ARTICLE_ALREADY_EXISTS(409, "Article Already Exists"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 
