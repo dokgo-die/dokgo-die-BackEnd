@@ -1,6 +1,6 @@
 package com.example.dokgodieserver.domain.user.facade;
 
-import com.example.dokgodieserver.domain.grade.repository.GradeRepository;
+import com.example.dokgodieserver.domain.conversation.domain.ConversationUser;
 import com.example.dokgodieserver.domain.user.domain.User;
 import com.example.dokgodieserver.domain.user.domain.repository.UserRepository;
 import com.example.dokgodieserver.domain.user.exception.UserNotFoundException;
@@ -17,7 +17,6 @@ import static com.example.dokgodieserver.domain.user.presentation.dto.response.M
 public class UserFacade {
 
     private final UserRepository userRepository;
-    private final GradeRepository gradeRepository;
 
     public User getCurrentUser() {
         String accountId = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -25,15 +24,14 @@ public class UserFacade {
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
-    public List<UserTalkResponse> getUserTalkList(User user) {
-
-        return user.getConversationList()
+    public List<UserTalkResponse> getUserTalkList(List<ConversationUser> conversationUserList) {
+        return conversationUserList
                 .stream()
-                .map(conversation -> UserTalkResponse.builder()
-                        .userId(conversation.getUser().getId())
-                        .name(conversation.getUser().getName())
-                        .grade(conversation.getUser().getResult())
-                        .profileImageUrl(conversation.getUser().getProfileImageUrl())
+                .map(conversationUser -> UserTalkResponse.builder()
+                        .userId(conversationUser.getUser().getId())
+                        .name(conversationUser.getUser().getName())
+                        .grade(conversationUser.getUser().getResult())
+                        .profileImageUrl(conversationUser.getUser().getProfileImageUrl())
                         .build())
                 .toList();
     }
