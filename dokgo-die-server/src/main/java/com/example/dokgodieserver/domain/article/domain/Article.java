@@ -26,15 +26,19 @@ public class Article {
     @NotNull
     private String articleLink;
 
+    @NotNull
+    private String reels;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Builder
-    public Article(String title, String articleLink, User user) {
+    public Article(String title, String articleLink, String reels,User user) {
         this.title = title;
         this.articleLink = articleLink;
         this.user = user;
+        this.reels = reels;
     }
 
 }
