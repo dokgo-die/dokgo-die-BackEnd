@@ -1,14 +1,16 @@
 package com.example.dokgodieserver.domain.user.domain;
 
 import com.example.dokgodieserver.domain.user.domain.type.Authority;
+import com.example.dokgodieserver.infrastructure.s3.DefaultImage;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
-import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,6 +34,8 @@ public class User {
     @NotNull
     private String password;
 
+    @ColumnDefault(DefaultImage.USER_PROFILE_IMAGE)
+    @Column(nullable = false)
     private String profileImageUrl;
 
     @NotNull
