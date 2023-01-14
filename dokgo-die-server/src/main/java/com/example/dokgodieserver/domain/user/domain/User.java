@@ -1,5 +1,6 @@
 package com.example.dokgodieserver.domain.user.domain;
 
+import com.example.dokgodieserver.domain.user.domain.type.Authority;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -27,6 +28,11 @@ public class User {
     @Column(length = 60)
     @NotNull
     private String password;
+
+    @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
 
     @Builder
     public User(String accountId, String name, String password) {
