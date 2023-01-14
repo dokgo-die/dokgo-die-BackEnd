@@ -1,5 +1,6 @@
 package com.example.dokgodieserver.domain.user.domain;
 
+import com.example.dokgodieserver.domain.conversation.Conversation;
 import com.example.dokgodieserver.domain.user.domain.type.Authority;
 import com.example.dokgodieserver.infrastructure.s3.DefaultImage;
 import lombok.AccessLevel;
@@ -11,6 +12,8 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -42,6 +45,11 @@ public class User {
     @Column(length = 5)
     @Enumerated(EnumType.STRING)
     private Authority authority;
+
+    private Byte result;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Conversation> conversationList = new ArrayList<>();
 
     @Builder
     public User(String accountId, String name, String password, Authority authority) {
