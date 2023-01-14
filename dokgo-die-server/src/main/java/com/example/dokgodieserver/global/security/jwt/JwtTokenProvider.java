@@ -23,7 +23,7 @@ public class JwtTokenProvider {
     private final AuthDetailsService authDetailsService;
     private final JwtProperties jwtProperties;
 
-    private String generateToken(String id, Long exp) {
+    public String generateToken(String id, Long exp) {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .setSubject(id)
