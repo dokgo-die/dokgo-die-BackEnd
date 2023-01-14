@@ -1,6 +1,6 @@
 package com.example.dokgodieserver.domain.user.domain;
 
-import com.example.dokgodieserver.domain.conversation.Conversation;
+import com.example.dokgodieserver.domain.conversation.domain.ConversationUser;
 import com.example.dokgodieserver.domain.user.domain.type.Authority;
 import com.example.dokgodieserver.infrastructure.s3.DefaultImage;
 import lombok.AccessLevel;
@@ -46,17 +46,23 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    private Byte result;
+    @NotNull
+    private int result;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private List<Conversation> conversationList = new ArrayList<>();
+    private List<ConversationUser> conversationUserList = new ArrayList<>();
 
     @Builder
-    public User(String accountId, String name, String password, Authority authority) {
+    public User(String accountId, String name, String password, Authority authority, int result) {
         this.accountId = accountId;
         this.name = name;
         this.password = password;
         this.authority = authority;
+        this.result = result;
+    }
+
+    public void setResult(int result) {
+        this.result += result;
     }
 
 }

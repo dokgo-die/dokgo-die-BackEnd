@@ -27,6 +27,7 @@ public class UserSignUpService {
                 .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .authority(Authority.USER)
+                .result(0)
                 .build());
     }
 
