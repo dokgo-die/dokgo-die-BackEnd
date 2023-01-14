@@ -1,15 +1,18 @@
 package com.example.dokgodieserver.domain.user.domain;
 
 import com.example.dokgodieserver.domain.user.domain.type.Authority;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.jetbrains.annotations.NotNull;
+
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 @Entity
 public class User {
 
@@ -28,6 +31,8 @@ public class User {
     @Column(length = 60)
     @NotNull
     private String password;
+
+    private String profileImageUrl;
 
     @NotNull
     @Column(length = 5)

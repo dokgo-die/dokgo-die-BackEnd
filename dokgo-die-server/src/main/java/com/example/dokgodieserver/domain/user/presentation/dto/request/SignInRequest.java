@@ -1,8 +1,9 @@
 package com.example.dokgodieserver.domain.user.presentation.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @NoArgsConstructor
