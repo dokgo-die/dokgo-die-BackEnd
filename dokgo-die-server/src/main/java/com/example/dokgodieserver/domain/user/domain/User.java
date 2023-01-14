@@ -44,10 +44,11 @@ public class User {
     private Authority authority;
 
     @Builder
-    public User(String accountId, String name, String password) {
+    public User(String accountId, String name, String password, Authority authority) {
         this.accountId = accountId;
         this.name = name;
         this.password = password;
+        this.authority = authority;
     }
 
 }

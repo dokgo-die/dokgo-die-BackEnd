@@ -1,4 +1,4 @@
-package com.example.dokgodieserver.domain.reels.domain;
+package com.example.dokgodieserver.domain.article.domain;
 
 import com.example.dokgodieserver.domain.user.domain.User;
 import lombok.AccessLevel;
@@ -7,28 +7,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Reels {
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50)
-    @NotNull
     private String title;
+
+    private String articleLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Builder
-    public Reels(String title, User user) {
+    public Article(String title, String articleLink, User user) {
         this.title = title;
+        this.articleLink = articleLink;
         this.user = user;
     }
 
