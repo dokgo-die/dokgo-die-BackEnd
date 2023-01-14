@@ -1,8 +1,12 @@
 package com.example.dokgodieserver.global.security;
 
+import com.example.dokgodieserver.global.filter.FilterConfig;
+import com.example.dokgodieserver.global.security.jwt.JwtTokenProvider;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -14,6 +18,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+    private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -28,7 +35,13 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeRequests()
-                .anyRequest().permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/auth").permitAll()
+
+                .anyRequest().authenticated()
+
+                .and()
+                .apply(new FilterConfig(jwtTokenProvider, objectMapper))
 
                 .and().build();
     }
