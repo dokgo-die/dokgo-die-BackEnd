@@ -18,6 +18,8 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "User Not Found"),
     IMAGE_NOT_FOUND(404, "Image Not Found"),
 
+    USER_ALREADY_EXISTS(409, "User Already Exist"),
+
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 
     private final int status;
