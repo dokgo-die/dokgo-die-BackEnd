@@ -14,3 +14,9 @@ spring:
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+
+jwt:
+  secret_key: ${SECRET_KEY}
+  access_exp: ${ACCESS_EXP}
+  header: ${HEADER}
+  prefix: ${PREFIX}
